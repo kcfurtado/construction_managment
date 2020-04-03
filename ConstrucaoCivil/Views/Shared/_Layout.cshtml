@@ -1,0 +1,183 @@
+﻿@RenderSection("scripts", required: false)
+
+@if (Session["sucesso"] == null)
+{
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Construção Civil</title>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/assets/css/core.css">
+    <link rel="stylesheet" href="~/Content/assets/css/components.css">
+    <link rel="stylesheet" href="~/Content/assets/icons/fontawesome/styles.min.css">
+    <link rel="stylesheet" href="~/Content/lib/css/chartist.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/PagedList.css" />
+    <link rel="stylesheet" href="~/Content/DataTables/css/jquery.dataTables.min.css"  />
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.min.css" />
+</head>
+
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-toggleable-md" id="nav-bares">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav">
+            <span>
+                <i class="fa fa-code-fork"></i>
+            </span>
+        </button>
+
+        <button class="navbar-toggler navbar-toggler-left" type="button" id="toggle-sidebar">
+            <span>
+                <i class="fa fa-align-justify"></i>
+            </span>
+        </button>
+
+        <a class="navbar-brand logo text-white" href="#">
+            <img id="img-logo" class="logo" src="~/Content/assets/img/indice.png" alt="Construção Civil">  <span id="logo-span"><b><strong>C</strong></b>ONSTRUÇÃO <b><strong>C</strong></b>IVIL</span>
+        </a>
+
+        @if (Session["sucesso"] != null)
+        {
+            var usr = Session["sucesso"] as ConstrucaoCivil.Models.tblFuncionario;
+            var funcID = Session["Func_ID"];
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="sidebar-toggle btn btn-flat" id="toggle-sidebar-desktop">
+                    <span>
+                        <i class="fa fa-align-justify"></i>
+                    </span>
+                </button>
+                <ul class="navbar-nav ml-auto text-white">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle dropdown-has-after" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <img src="~/Content/assets/img/default-user.jpg" alt="" class="user-img"> @usr.nome
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@Url.Action("Details", "Funcionarios", new { id = funcID })">
+                                <i class="fa fa-user"></i> <span>Perfil</span>
+                            </a>
+                            <a class="dropdown-item" href="@Url.Action("Logout", "Account")">
+                                <i class="fa fa-sign-out"></i> <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        }
+
+        
+    </nav>
+    <!-- /NAVBAR -->
+
+    <div class="page-container">
+        <div class="page-content">
+            <!-- inject:SIDEBAR -->
+
+           @if (Session["sucesso"] != null)
+           {
+               var user = Session["sucesso"] as ConstrucaoCivil.Models.tblFuncionario;
+               var ehAdmi = user.ehAdmin;
+
+            <div id="sidebar-main" class="sidebar sidebar-default">
+                <div class="sidebar-content">
+                    <ul class="navigation">
+
+                        @if (ehAdmi == true)
+                        {
+                            <li class="navigation-header">
+                                <span>Main</span>
+                                <i class="icon-menu"></i>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            </li>
+                        }
+                        
+
+                        <li class="navigation-header">
+                            <span>Forms</span>
+                            <i class="icon-menu"></i>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Obras")"><i class="fa fa-cogs"></i> <span>Obras</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Clientes")"><i class="fa fa-user"></i> <span>Clientes</span></a>
+                        </li>
+
+                        @if (@ehAdmi == true)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Funcionarios")"><i class="fa fa-user-o"></i> <span>Funcionários</span></a>
+                            </li>
+                        }                        
+
+                        <li>
+                            <a href="@Url.Action("Index","Fornecedores")"><i class="fa fa-building"></i> <span>Fornecedores</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Equipamentos")"><i class="fa fa-wrench"></i> <span>Equipamentos</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Material")"><i class="fa fa-tags"></i> <span>Materiais</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Fornece")"><i class="fa fa-exchange"></i> <span>Fornecimentos</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Pagamentos")"><i class="fa fa-credit-card"></i> <span>Pagamentos</span></a>
+                        </li>
+
+                        @if (@ehAdmi == true)
+                        {
+                            <li class="navigation-header">
+                                <i class="icon-setthings"></i>
+                                <span>Configurações</span>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("", "")"><i class="fa fa-edit"></i> <span>Back Up</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("", "")"><i class="fa fa-edit"></i> <span>Restore</span></a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+           }
+            <!-- inject:/SIDEBAR -->
+            <!-- PAGE CONTENT -->
+            <div class="container">
+                @RenderBody()
+            </div>
+            <!-- /PAGE CONTENT -->
+        </div>
+    </div>
+
+    
+    <script type="text/javascript" src="~/Content/lib/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/lib/js/tether.min.js"></script>
+    <script type="text/javascript" src="~/Content/lib/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/lib/js/chartist.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/js/app.min.js"></script>
+</body>
+
+</html>

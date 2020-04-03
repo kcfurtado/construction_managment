@@ -1,0 +1,15 @@
+﻿body {
+    background-color: #b2b2b2;
+}
+
+#card-login{
+    margin-top: 115px;
+}
+
+#center-card{
+    box-shadow: 4px 4px 10px 1px #707070;
+}
+
+.center-card{
+    box-shadow: 4px 4px 10px 1px #707070;
+}

@@ -1,0 +1,160 @@
+﻿@model ConstrucaoCivil.Models.tblFuncionario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-center">
+            <div class="card-header">
+                Visualizar
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">Visualizar Clientes</h4>
+            </div>
+            <dl class="dl-horizontal">
+                <dt>
+                    Nome Completo
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
+
+                <dt>
+                    BI
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.bi)
+                </dd>
+
+                <dt>
+                    NIF
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nif)
+                </dd>
+
+                <dt>
+                    Cidade
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.cidade)
+                </dd>
+
+                <dt>
+                    Localidade
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.localidade)
+                </dd>
+
+                <dt>
+                    Data Nascimento
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.data_nascenca)
+                </dd>
+
+                <dt>
+                    Função
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.funcao)
+                </dd>
+
+                <dt>
+                    Telefone
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.telefone)
+                </dd>
+
+                <dt>
+                    Email
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                    Conta Bancária
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.conta_bancaria)
+                </dd>
+
+                <dt>
+                    Salário
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.salario)
+                </dd>
+
+                <dt>
+                    Username
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.username)
+                </dd>
+
+                <dt>
+                    Password
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.password)
+                </dd>
+
+                <dt>
+                    Admin?
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ehAdmin)
+                </dd>
+
+                <dt>
+                   Criado Em
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.createdAt)
+                </dd>
+
+                <dt>
+                    Atualizado Em
+                </dt>
+
+                <dd>
+                   @Html.DisplayFor(model => model.updatedAt)
+                </dd>
+
+                <dt>
+                    Nível
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nivel)
+                </dd>
+
+            </dl>
+            <div class="card-footer text-muted text-center">
+                @Html.ActionLink(" Editar", "Edit", new { id = Model.id_func }, new { @class = "fa fa-edit" })  |
+                @Html.ActionLink(" Voltar a lista", "Index")
+            </div>
+        </div>
+    </div>
+</div>

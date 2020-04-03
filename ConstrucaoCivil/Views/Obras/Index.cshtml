@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ConstrucaoCivil.Models.tblObra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orçamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.custo_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.decriçao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblCliente.nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orçamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_fim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.custo_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.decriçao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCliente.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_obra }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_obra }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_obra })
+        </td>
+    </tr>
+}
+
+</table>

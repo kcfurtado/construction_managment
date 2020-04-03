@@ -1,0 +1,106 @@
+﻿@model ConstrucaoCivil.Models.tblObra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblObra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orçamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orçamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.custo_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.custo_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.decriçao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.decriçao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCliente.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCliente.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_obra }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,98 @@
+﻿@*@model IEnumerable<ConstrucaoCivil.Models.tblCliente>*@
+@model PagedList.IPagedList<ConstrucaoCivil.Models.tblCliente>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary col-xs-3" style="margin-top:20px">Clientes</h2>
+
+<p class="btn btn-rounded"  id="html-action">
+    @Html.ActionLink("Novo Cliente", "Create")
+</p>
+<div class="s">
+    <br />
+    <table class="table table-condensed table-responsive table-header">
+        <thead class="thead-default">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    NIF
+                </th>
+                <th>
+                    Data Nascimento
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Localidade
+                </th>
+                <th>
+                    Telefone
+                </th>
+                <th>
+                    Email
+                </th>
+                @*<th>
+                    Criado Em
+                </th>
+                <th>
+                    Atualizado Em
+                </th>*@
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @item.nome
+                    </td>
+                    <td>
+                        @item.nif
+                    </td>
+                    <td>
+                        @item.dataNascimento
+                    </td>
+                    <td>
+                        @item.tipo
+                    </td>
+                    <td>
+                        @item.cidade
+                    </td>
+                    <td>
+                        @item.localidade
+                    </td>
+                    <td>
+                        @item.telefone
+                    </td>
+                    <td>
+                        @item.email
+                    </td>
+                    @*<td>
+                            @item.createdAt
+                        </td>
+                        <td>
+                            @item.updatedAt
+                        </td>*@
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.id_cliente }, new { @class = "fa fa-edit text-success" }) |
+                        @Html.ActionLink(" ", "Details", new { id = item.id_cliente }, new { @class = "fa fa-eye text-primary" }) |
+                        @Html.ActionLink(" ", "Delete", new { id = item.id_cliente }, new { @class = "fa fa-trash text-danger" }) 
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+        Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount tblClientes
+</div>

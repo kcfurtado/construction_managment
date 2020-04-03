@@ -1,0 +1,169 @@
+﻿@model ConstrucaoCivil.Models.tblFuncionario
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-center">
+            <div class="card-header">
+                Apagar Funcionários
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">Tem certeza que pretende apagar esse funcionário?</h4>
+            </div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.nome)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.bi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.bi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.nif)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nif)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.cidade)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.cidade)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.localidade)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.localidade)
+                </dd>
+
+                @*<dt>
+                    @Html.DisplayNameFor(model => model.data_nascenca)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.data_nascenca)
+                </dd>*@
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.funcao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.funcao)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.telefone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.telefone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                @*<dt>
+                    @Html.DisplayNameFor(model => model.conta_bancaria)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.conta_bancaria)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.salario)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.salario)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.username)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.username)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.password)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.password)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ehAdmin)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ehAdmin)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.createdAt)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.createdAt)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.updatedAt)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.updatedAt)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.nivel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nivel)
+                </dd>*@
+
+            </dl>
+            <div class="card-footer text-muted text-center">
+
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Apagar" class="btn btn-danger btn-rounded" /> |
+                        @Html.ActionLink("Voltar a lista", "Index", new { @class = "btn btn-default" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+﻿@model PagedList.IPagedList<ConstrucaoCivil.Models.tblFuncionario>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary col-xs-3" style="margin-top:20px">Funcionários</h2>
+
+<p class="btn btn-rounded"  id="html-action">
+    @Html.ActionLink("Novo Funcionário", "Create")
+</p>
+
+<div class="s">
+    <br />
+    <table class="table table-condensed table-responsive table-heade">
+        <thead class="thead-default">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    BI
+                </th>
+                @*<th>
+                    NIF
+                </th>*@
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Localidade
+                </th>
+                <th>
+                    Data Nascimento
+                </th>
+                <th>
+                    Função
+                </th>
+                <th>
+                    Telefone
+                </th>
+                <th>
+                    Email
+                </th>
+                @*<th>
+                    Conta Bancária
+                </th>
+                <th>
+                    Salário
+                </th>
+                <th>
+                        @Html.DisplayNameFor(model => model.username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ehAdmin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.createdAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.updatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nivel)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @item.nome
+                    </td>
+                    <td>
+                        @item.bi
+                    </td>
+                    @*<td>
+                        @item.nif
+                    </td>*@
+                    <td>
+                        @item.cidade
+                    </td>
+                    <td>
+                        @item.localidade
+                    </td>
+                    <td>
+                        @item.data_nascenca
+                    </td>
+                    <td>
+                        @item.funcao
+                    </td>
+                    <td>
+                        @item.telefone
+                    </td>
+                    <td>
+                        @item.email
+                    </td>
+                   @* <td>
+                        @item.conta_bancaria
+                    </td>
+                    <td>
+                        @item.salario
+                    </td>
+                   <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ehAdmin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createdAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.updatedAt)
+                        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nivel)
+                    </td>*@
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.id_func }, new { @class = "fa fa-edit text-success" }) |
+                        @Html.ActionLink(" ", "Details", new { id = item.id_func }, new { @class = "fa fa-eye text-primary" }) |
+                        @Html.ActionLink(" ", "Delete", new { id = item.id_func }, new { @class = "fa fa-trash text-danger" })
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount tblClientes
+</div>

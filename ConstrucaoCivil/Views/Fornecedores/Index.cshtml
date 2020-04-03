@@ -1,0 +1,287 @@
+﻿@model ConstrucaoCivil.Models.FornecedorViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center text-primary col-xs-3" style="margin-top:20px">Fornecedores</h2>
+
+<a href="#" class="btn btn-primary btn-rounded" onclick="NovoFornecedor(0)">Novo Fornecedor</a> <br /><br />
+@*<a href="#" class="btn btn-success btn-rounded" onclick="EditarFornecedor(1)">Editar Fornecedor</a> <br /><br />*@
+
+<table class="table table-condensed table-responsive">
+    <thead class="thead-default">
+        <tr>
+            <th>ID</th>
+            <th>NIF</th>
+            <th>Nome</th>
+            <th>Área</th>
+            <th>Serviço</th>
+            <th>Cidade</th>
+            <th>Local</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>C. Banco</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody id="PorListaFornecedor">
+        <tr id="LoadingStatus" style="color:red"></tr>
+    </tbody>
+
+</table>
+
+
+@*-------------------------- FORM ---------------------------------------------------*@
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        @Html.HiddenFor(m => m.id_fornecedor, new { @id = "id_fornecedor" })
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.nif, new { @id = "nif", @class = "form-control", @placeholder = "NIF" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.nome, new { @id = "nome", @class = "form-control", @placeholder = "Nome" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.area, new { @id = "area", @class = "form-control", @placeholder = "Área" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.servico, new { @id = "servico", @class = "form-control", @placeholder = "Serviço" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.cidade, new { @id = "cidade", @class = "form-control", @placeholder = "Cidade" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.local, new { @id = "local", @class = "form-control", @placeholder = "Local" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.email, new { @id = "email", @class = "form-control", @placeholder = "Email" ,@type="email" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.telefone, new { @id = "telefone", @class = "form-control", @placeholder = "Telefone" , @type = "number" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.conta_bancaria, new { @id = "conta_bancaria", @class = "form-control", @placeholder = "Consta Bancaria", @type = "number" })
+                        </div>
+                        @*<div class="form-group">
+                                @Html.DropDownListFor(m => m.DepartmentId, ViewBag.ListOfDepartment as SelectList, "--Select Dept--", new { @id = "DropDwn", @class = "form-control" })
+                            </div>*@
+                        <div class="form-group">
+                            <a href="#" style="margin-left:130px" class="btn btn-success pull-left fa fa-save" id="GuardarFornecedor"> Guardar</a>
+                            <a href="#" style="margin-right:130px" class="btn btn-danger pull-right fa fa-close" data-dismiss="modal"> Cancelar</a>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*---------------------------------------------------- FIM --------------------------------------------------------------------------*@
+
+@*-------------------------- FORM ---------------------------------------------------*@
+<div class="modal fade" id="MyModalView">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitleView"></h4>
+            </div>
+            <div class="modal-body">
+                <p><b><label>ID: &nbsp;&nbsp; </label></b><span id="Vid_funcionario"></span></p>
+                <p><b><label>Nome: &nbsp;&nbsp;</label></b><span id="Vnome"></span></p>
+                <p><b><label>Area: &nbsp;&nbsp;</label></b><span id="Varea"></span></p>
+                <p><b><label>Serviço:&nbsp;&nbsp; </label></b><span id="Vservico"></span></p>
+                <p><b><label>Cidade:&nbsp;&nbsp; </label></b><span id="Vcidade"></span></p>
+                <p><b><label>Local:&nbsp;&nbsp; </label></b><span id="Vlocal"></span></p>
+                <p><b><label>Email:&nbsp;&nbsp; </label></b><span id="Vemail"></span></p>
+                <p><b><label>Telefone:&nbsp;&nbsp; </label></b><span id="Vtelefone"></span></p>
+                <p><b><label>Conta Bancaria:&nbsp;&nbsp; </label></b><span id="Vconta_bancaria"></span></p>
+                <p><b><label>Criado Em:&nbsp;&nbsp; </label></b><span id="VcreatedAt"></span></p>
+                <p><b><label>Editado EM:&nbsp;&nbsp; </label></b><span id="VupdatedAt"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+@*----------------------------------------- INICIO DeleteConfirmation ---------------------------------------------------------------*@
+
+@*Create A PopUp Modal For DeleteConfirmation*@
+
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 class="text-center">Apagar Fornecedor</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Tem certeza que quer apagar esse Fornecedor ?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success fa fa-close" data-dismiss="modal" id="r"> Cancelar</a>
+                <a href="#" class="btn btn-danger fa fa-trash" onclick="ConfirmDelete()"> Apagar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*----------------------------------------- FIM DeleteConfirmation ---------------------------------------------------------------------*@
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    $("#LoadingStatus").html("Carregando ....");
+
+    $.get("/Fornecedores/ListaFornecedor", null, DataBind);
+    function DataBind(ListaFornecedor) {
+        //This Code For Receive All Data From Controller And Show It In Client Side
+        var setData = $("#PorListaFornecedor");
+
+        for (var i = 0; i < ListaFornecedor.length; i++) {
+            if (ListaFornecedor.length == 0) {
+                var Data = "<tr class='text-primary'>Nenhum Fornecedor Registrado</tr>"
+                setData.append(Data);
+                $("#LoadingStatus").html(" ");
+            } else {
+                var Data =
+                    "<tr class='row_" + ListaFornecedor[i].id_fornecedor + "'>" +
+                        "<td>" + ListaFornecedor[i].id_fornecedor + "</td>" +
+                        "<td>" + ListaFornecedor[i].nif + "</td>" +
+                        "<td>" + ListaFornecedor[i].nome + "</td>" +
+                        "<td>" + ListaFornecedor[i].area + "</td>" +
+                        "<td>" + ListaFornecedor[i].servico + "</td>" +
+                        "<td>" + ListaFornecedor[i].cidade + "</td>" +
+                        "<td>" + ListaFornecedor[i].local + "</td>" +
+                        "<td>" + ListaFornecedor[i].email + "</td>" +
+                        "<td>" + ListaFornecedor[i].telefone + "</td>" +
+                        "<td>" + ListaFornecedor[i].conta_bancaria + "</td>" +
+
+                        "<td>" + "<a href='#' class='text-primary fa fa-edit' onclick='EditarFornecedor(" + ListaFornecedor[i].id_fornecedor + ")' ></a>" + "</td>" +
+                        "<td>" + "<a href='#' class='text-success fa fa-eye' onclick='VerDetalhes(" + ListaFornecedor[i].id_fornecedor + ")'></a>" + "</td>" +
+                        "<td>" + "<a href='#' class='text-danger fa fa-trash' onclick='ApagarFornecedor(" + ListaFornecedor[i].id_fornecedor + ")'></a>" + "</td>" +
+                    "</tr>";
+
+                setData.append(Data);
+                $("#LoadingStatus").html(" ");
+            }
+        }
+    }
+
+    //Show The Popup Modal For Add New Student
+    function NovoFornecedor(id_fornecedor) {
+        $("#form")[0].reset();
+        $("#id_fornecedor").val(0);
+        //$("#DropDwn option:selected").text("--Select Dept--");
+        $("#ModalTitle").html("Novo Fornecedor").addClass("text-center");
+        $("#MyModal").modal();
+    }
+     
+    //Editar Fornecedor
+    function EditarFornecedor(id_fornecedor) {
+        var url = "/Fornecedores/FornecedorPorId?id_fornecedor=" + id_fornecedor;
+
+        $("#ModalTitle").html("Editar Fornecedor");
+        $("#MyModal").modal();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#id_fornecedor").val(obj.id_fornecedor);
+                $("#nif").val(obj.nif);
+                $("#nome").val(obj.nome);
+                $("#area").val(obj.area);
+                $("#servico").val(obj.servico);
+                $("#cidade").val(obj.cidade);
+                $("#local").val(obj.local);
+                $("#email").val(obj.email);
+                $("#telefone").val(obj.telefone);
+                $("#conta_bancaria").val(obj.conta_bancaria);
+
+            }
+        })
+    }
+
+    // show details
+    function VerDetalhes(id_fornecedor) {
+        var url = "/Fornecedores/FornecedorPorId?id_fornecedor=" + id_fornecedor;
+
+        $("#ModalTitleView").html("Dados de Fornecedor");
+        $("#MyModalView").modal();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#Vid_funcionario").html(obj.id_fornecedor);
+                $("#Vnif").html(obj.nif);
+                $("#Vnome").html(obj.nome);
+                $("#Varea").html(obj.area);
+                $("#Vservico").html(obj.servico);
+                $("#Vcidade").html(obj.cidade);
+                $("#Vlocal").html(obj.local);
+                $("#Vemail").html(obj.email);
+                $("#Vtelefone").html(obj.telefone);
+                $("#Vconta_bancaria").html(obj.conta_bancaria);
+                $("#VcreatedAt").html(obj.createdAt);
+                $("#VupdatedAt").html(obj.updatedAt);
+
+            }
+        })
+    }
+
+    //Guardar ou Editar Fornecedor
+    $("#GuardarFornecedor").click( function () {
+        var data = $("#SubmitForm").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Fornecedores/NovoOuEditarFornecedor",
+            data: data,
+            success: function (result) {
+                alert("Guardado com Successo");
+                window.location.href = "/Fornecedores/index";
+                $("#MyModal").modal("hide");
+            }
+        })
+    })
+
+    //Apagar Fornecedor
+    var ApagarFornecedor = function (id_fornecedor) {
+        $("#id_fornecedor").val(id_fornecedor);
+        $("#DeleteConfirmation").modal("show");
+    }
+
+    //Confirmação para Apagar Fornecedor
+    var ConfirmDelete = function () {
+        var id_fornecedor = $("#id_fornecedor").val();
+        $.ajax({
+            type: "Post",
+            url: "/Fornecedores/ApagarFornecedor?id_fornecedor=" + id_fornecedor,
+            success: function (result) {
+                if (result === true) {
+                    alert("Apagado com Successo");
+                    $("#DeleteConfirmation").modal("hide");
+                    $(".row_" + id_fornecedor).remove();
+                } else {
+                    alert("Apagado Sem Successo");
+                    $("#DeleteConfirmation").modal("hide");
+                }
+                
+            }
+        })
+    }
+
+</script>

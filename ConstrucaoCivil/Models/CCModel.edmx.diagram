@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25beb500b4be40efb154150ff9f2ef7a" Name="Diagram1">
+        <EntityTypeShape EntityType="CivilConstructModel.tblAbastece" Width="1.5" PointX="11" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblCliente" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblConsome" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblEquipamento" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblFornece" Width="1.5" PointX="11" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblFornecedor" Width="1.5" PointX="8.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblFuncionario" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblMaterial" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblObra" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblPagamento" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblRequer" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CivilConstructModel.tblTrabalha" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblAbastece_tblFornecedor" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblAbastece_tblMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblObra_tblCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblConsome_tblMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblConsome_tblObra" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblFornece_tblEquipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblRequer_tblEquipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblFornece_tblFornecedor" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblPagamento_tblFuncionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblTrabalha_tblFuncionario" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblPagamento_tblObra" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblRequer_tblObra" ManuallyRouted="false" />
+        <AssociationConnector Association="CivilConstructModel.FK_tblTrabalha_tblObra" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

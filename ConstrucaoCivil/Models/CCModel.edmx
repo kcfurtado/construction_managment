@@ -1,0 +1,1042 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CivilConstructModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAbastece">
+          <Key>
+            <PropertyRef Name="id_material" />
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_material" Type="int" Nullable="false" />
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="data" Type="date" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="custo" Type="int" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nif" Type="int" Nullable="false" />
+          <Property Name="dataNascimento" Type="date" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="150" />
+          <Property Name="localidade" Type="varchar" MaxLength="150" />
+          <Property Name="telefone" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="300" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="updatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblConsome">
+          <Key>
+            <PropertyRef Name="id_material" />
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_material" Type="int" Nullable="false" />
+          <Property Name="id_obra" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEquipamento">
+          <Key>
+            <PropertyRef Name="id_equip" />
+          </Key>
+          <Property Name="id_equip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="modelo" Type="varchar" MaxLength="150" />
+          <Property Name="aquisicao" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="preco" Type="int" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblFornece">
+          <Key>
+            <PropertyRef Name="id_fornece" />
+          </Key>
+          <Property Name="id_fornece" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="id_equip" Type="int" Nullable="false" />
+          <Property Name="modo" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="custo" Type="int" />
+          <Property Name="data_inicio" Type="datetime" Nullable="false" />
+          <Property Name="data_fim" Type="datetime" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nif" Type="nchar" MaxLength="10" />
+          <Property Name="nome" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="area" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="servico" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="local" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
+          <Property Name="telefone" Type="varchar" MaxLength="150" />
+          <Property Name="conta_bancaria" Type="varchar" MaxLength="150" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFuncionario">
+          <Key>
+            <PropertyRef Name="id_func" />
+          </Key>
+          <Property Name="id_func" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bi" Type="int" Nullable="false" />
+          <Property Name="nif" Type="int" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="localidade" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="data_nascenca" Type="date" Nullable="false" />
+          <Property Name="funcao" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="telefone" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="conta_bancaria" Type="varchar" MaxLength="80" />
+          <Property Name="salario" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ehAdmin" Type="bit" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime" Nullable="false" />
+          <Property Name="nivel" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tblMaterial">
+          <Key>
+            <PropertyRef Name="id_material" />
+          </Key>
+          <Property Name="id_material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="150" />
+          <Property Name="modelo" Type="varchar" MaxLength="150" />
+          <Property Name="categoria" Type="varchar" MaxLength="150" />
+          <Property Name="preco" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="updateAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblObra">
+          <Key>
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_obra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="local" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="orçamento" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="data_inicio" Type="date" Nullable="false" />
+          <Property Name="data_fim" Type="date" />
+          <Property Name="custo_total" Type="int" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="decriçao" Type="varchar" MaxLength="150" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="updatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPagamento">
+          <Key>
+            <PropertyRef Name="id_pagam" />
+          </Key>
+          <Property Name="id_pagam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="quantia" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="id_obra" Type="int" />
+          <Property Name="id_func" Type="int" />
+          <Property Name="tipo" Type="varchar" MaxLength="100" />
+          <Property Name="createAt" Type="datetime" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRequer">
+          <Key>
+            <PropertyRef Name="id_equip" />
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_equip" Type="int" Nullable="false" />
+          <Property Name="id_obra" Type="int" Nullable="false" />
+          <Property Name="data" Type="date" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTrabalha">
+          <Key>
+            <PropertyRef Name="id_obra" />
+            <PropertyRef Name="id_func" />
+          </Key>
+          <Property Name="id_obra" Type="int" Nullable="false" />
+          <Property Name="id_func" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblAbastece_tblFornecedor">
+          <End Role="tblFornecedor" Type="Self.tblFornecedor" Multiplicity="1" />
+          <End Role="tblAbastece" Type="Self.tblAbastece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tblAbastece">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAbastece_tblMaterial">
+          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="1" />
+          <End Role="tblAbastece" Type="Self.tblAbastece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaterial">
+              <PropertyRef Name="id_material" />
+            </Principal>
+            <Dependent Role="tblAbastece">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConsome_tblMaterial">
+          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="1" />
+          <End Role="tblConsome" Type="Self.tblConsome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaterial">
+              <PropertyRef Name="id_material" />
+            </Principal>
+            <Dependent Role="tblConsome">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConsome_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblConsome" Type="Self.tblConsome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblConsome">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFornece_tblEquipamento">
+          <End Role="tblEquipamento" Type="Self.tblEquipamento" Multiplicity="1" />
+          <End Role="tblFornece" Type="Self.tblFornece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipamento">
+              <PropertyRef Name="id_equip" />
+            </Principal>
+            <Dependent Role="tblFornece">
+              <PropertyRef Name="id_equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFornece_tblFornecedor">
+          <End Role="tblFornecedor" Type="Self.tblFornecedor" Multiplicity="1" />
+          <End Role="tblFornece" Type="Self.tblFornece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tblFornece">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblObra_tblCliente">
+          <End Role="tblCliente" Type="Self.tblCliente" Multiplicity="1" />
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="tblObra">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPagamento_tblFuncionario">
+          <End Role="tblFuncionario" Type="Self.tblFuncionario" Multiplicity="0..1" />
+          <End Role="tblPagamento" Type="Self.tblPagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionario">
+              <PropertyRef Name="id_func" />
+            </Principal>
+            <Dependent Role="tblPagamento">
+              <PropertyRef Name="id_func" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPagamento_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="0..1" />
+          <End Role="tblPagamento" Type="Self.tblPagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblPagamento">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRequer_tblEquipamento">
+          <End Role="tblEquipamento" Type="Self.tblEquipamento" Multiplicity="1" />
+          <End Role="tblRequer" Type="Self.tblRequer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipamento">
+              <PropertyRef Name="id_equip" />
+            </Principal>
+            <Dependent Role="tblRequer">
+              <PropertyRef Name="id_equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRequer_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblRequer" Type="Self.tblRequer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblRequer">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTrabalha_tblFuncionario">
+          <End Role="tblFuncionario" Type="Self.tblFuncionario" Multiplicity="1" />
+          <End Role="tblTrabalha" Type="Self.tblTrabalha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionario">
+              <PropertyRef Name="id_func" />
+            </Principal>
+            <Dependent Role="tblTrabalha">
+              <PropertyRef Name="id_func" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTrabalha_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblTrabalha" Type="Self.tblTrabalha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblTrabalha">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CivilConstructModelStoreContainer">
+          <EntitySet Name="tblAbastece" EntityType="Self.tblAbastece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCliente" EntityType="Self.tblCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConsome" EntityType="Self.tblConsome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEquipamento" EntityType="Self.tblEquipamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFornece" EntityType="Self.tblFornece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFornecedor" EntityType="Self.tblFornecedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFuncionario" EntityType="Self.tblFuncionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMaterial" EntityType="Self.tblMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblObra" EntityType="Self.tblObra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPagamento" EntityType="Self.tblPagamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRequer" EntityType="Self.tblRequer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTrabalha" EntityType="Self.tblTrabalha" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblAbastece_tblFornecedor" Association="Self.FK_tblAbastece_tblFornecedor">
+            <End Role="tblFornecedor" EntitySet="tblFornecedor" />
+            <End Role="tblAbastece" EntitySet="tblAbastece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAbastece_tblMaterial" Association="Self.FK_tblAbastece_tblMaterial">
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+            <End Role="tblAbastece" EntitySet="tblAbastece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConsome_tblMaterial" Association="Self.FK_tblConsome_tblMaterial">
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+            <End Role="tblConsome" EntitySet="tblConsome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConsome_tblObra" Association="Self.FK_tblConsome_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblConsome" EntitySet="tblConsome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFornece_tblEquipamento" Association="Self.FK_tblFornece_tblEquipamento">
+            <End Role="tblEquipamento" EntitySet="tblEquipamento" />
+            <End Role="tblFornece" EntitySet="tblFornece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFornece_tblFornecedor" Association="Self.FK_tblFornece_tblFornecedor">
+            <End Role="tblFornecedor" EntitySet="tblFornecedor" />
+            <End Role="tblFornece" EntitySet="tblFornece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblObra_tblCliente" Association="Self.FK_tblObra_tblCliente">
+            <End Role="tblCliente" EntitySet="tblCliente" />
+            <End Role="tblObra" EntitySet="tblObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPagamento_tblFuncionario" Association="Self.FK_tblPagamento_tblFuncionario">
+            <End Role="tblFuncionario" EntitySet="tblFuncionario" />
+            <End Role="tblPagamento" EntitySet="tblPagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPagamento_tblObra" Association="Self.FK_tblPagamento_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblPagamento" EntitySet="tblPagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRequer_tblEquipamento" Association="Self.FK_tblRequer_tblEquipamento">
+            <End Role="tblEquipamento" EntitySet="tblEquipamento" />
+            <End Role="tblRequer" EntitySet="tblRequer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRequer_tblObra" Association="Self.FK_tblRequer_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblRequer" EntitySet="tblRequer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTrabalha_tblFuncionario" Association="Self.FK_tblTrabalha_tblFuncionario">
+            <End Role="tblFuncionario" EntitySet="tblFuncionario" />
+            <End Role="tblTrabalha" EntitySet="tblTrabalha" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTrabalha_tblObra" Association="Self.FK_tblTrabalha_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblTrabalha" EntitySet="tblTrabalha" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CivilConstructModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAbastece">
+          <Key>
+            <PropertyRef Name="id_material" />
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_material" Type="Int32" Nullable="false" />
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="custo" Type="Int32" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblFornecedor" Relationship="Self.FK_tblAbastece_tblFornecedor" FromRole="tblAbastece" ToRole="tblFornecedor" />
+          <NavigationProperty Name="tblMaterial" Relationship="Self.FK_tblAbastece_tblMaterial" FromRole="tblAbastece" ToRole="tblMaterial" />
+        </EntityType>
+        <EntityType Name="tblCliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nif" Type="Int32" Nullable="false" />
+          <Property Name="dataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="localidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblObra" Relationship="Self.FK_tblObra_tblCliente" FromRole="tblCliente" ToRole="tblObra" />
+        </EntityType>
+        <EntityType Name="tblConsome">
+          <Key>
+            <PropertyRef Name="id_material" />
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_material" Type="Int32" Nullable="false" />
+          <Property Name="id_obra" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblMaterial" Relationship="Self.FK_tblConsome_tblMaterial" FromRole="tblConsome" ToRole="tblMaterial" />
+          <NavigationProperty Name="tblObra" Relationship="Self.FK_tblConsome_tblObra" FromRole="tblConsome" ToRole="tblObra" />
+        </EntityType>
+        <EntityType Name="tblEquipamento">
+          <Key>
+            <PropertyRef Name="id_equip" />
+          </Key>
+          <Property Name="id_equip" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modelo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="aquisicao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="preco" Type="Int32" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblFornece" Relationship="Self.FK_tblFornece_tblEquipamento" FromRole="tblEquipamento" ToRole="tblFornece" />
+          <NavigationProperty Name="tblRequer" Relationship="Self.FK_tblRequer_tblEquipamento" FromRole="tblEquipamento" ToRole="tblRequer" />
+        </EntityType>
+        <EntityType Name="tblFornece">
+          <Key>
+            <PropertyRef Name="id_fornece" />
+          </Key>
+          <Property Name="id_fornece" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="id_equip" Type="Int32" Nullable="false" />
+          <Property Name="modo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="custo" Type="Int32" />
+          <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="data_fim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblEquipamento" Relationship="Self.FK_tblFornece_tblEquipamento" FromRole="tblFornece" ToRole="tblEquipamento" />
+          <NavigationProperty Name="tblFornecedor" Relationship="Self.FK_tblFornece_tblFornecedor" FromRole="tblFornece" ToRole="tblFornecedor" />
+        </EntityType>
+        <EntityType Name="tblFornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nif" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="area" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="servico" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="local" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="conta_bancaria" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblAbastece" Relationship="Self.FK_tblAbastece_tblFornecedor" FromRole="tblFornecedor" ToRole="tblAbastece" />
+          <NavigationProperty Name="tblFornece" Relationship="Self.FK_tblFornece_tblFornecedor" FromRole="tblFornecedor" ToRole="tblFornece" />
+        </EntityType>
+        <EntityType Name="tblFuncionario">
+          <Key>
+            <PropertyRef Name="id_func" />
+          </Key>
+          <Property Name="id_func" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bi" Type="Int32" Nullable="false" />
+          <Property Name="nif" Type="Int32" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="localidade" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_nascenca" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="funcao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="conta_bancaria" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="salario" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ehAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nivel" Type="Int16" />
+          <NavigationProperty Name="tblPagamento" Relationship="Self.FK_tblPagamento_tblFuncionario" FromRole="tblFuncionario" ToRole="tblPagamento" />
+          <NavigationProperty Name="tblTrabalha" Relationship="Self.FK_tblTrabalha_tblFuncionario" FromRole="tblFuncionario" ToRole="tblTrabalha" />
+        </EntityType>
+        <EntityType Name="tblMaterial">
+          <Key>
+            <PropertyRef Name="id_material" />
+          </Key>
+          <Property Name="id_material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="categoria" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="preco" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updateAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblAbastece" Relationship="Self.FK_tblAbastece_tblMaterial" FromRole="tblMaterial" ToRole="tblAbastece" />
+          <NavigationProperty Name="tblConsome" Relationship="Self.FK_tblConsome_tblMaterial" FromRole="tblMaterial" ToRole="tblConsome" />
+        </EntityType>
+        <EntityType Name="tblObra">
+          <Key>
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_obra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="local" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orçamento" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="data_fim" Type="DateTime" Precision="0" />
+          <Property Name="custo_total" Type="Int32" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="decriçao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCliente" Relationship="Self.FK_tblObra_tblCliente" FromRole="tblObra" ToRole="tblCliente" />
+          <NavigationProperty Name="tblConsome" Relationship="Self.FK_tblConsome_tblObra" FromRole="tblObra" ToRole="tblConsome" />
+          <NavigationProperty Name="tblPagamento" Relationship="Self.FK_tblPagamento_tblObra" FromRole="tblObra" ToRole="tblPagamento" />
+          <NavigationProperty Name="tblRequer" Relationship="Self.FK_tblRequer_tblObra" FromRole="tblObra" ToRole="tblRequer" />
+          <NavigationProperty Name="tblTrabalha" Relationship="Self.FK_tblTrabalha_tblObra" FromRole="tblObra" ToRole="tblTrabalha" />
+        </EntityType>
+        <EntityType Name="tblPagamento">
+          <Key>
+            <PropertyRef Name="id_pagam" />
+          </Key>
+          <Property Name="id_pagam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantia" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_obra" Type="Int32" />
+          <Property Name="id_func" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblFuncionario" Relationship="Self.FK_tblPagamento_tblFuncionario" FromRole="tblPagamento" ToRole="tblFuncionario" />
+          <NavigationProperty Name="tblObra" Relationship="Self.FK_tblPagamento_tblObra" FromRole="tblPagamento" ToRole="tblObra" />
+        </EntityType>
+        <EntityType Name="tblRequer">
+          <Key>
+            <PropertyRef Name="id_equip" />
+            <PropertyRef Name="id_obra" />
+          </Key>
+          <Property Name="id_equip" Type="Int32" Nullable="false" />
+          <Property Name="id_obra" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblEquipamento" Relationship="Self.FK_tblRequer_tblEquipamento" FromRole="tblRequer" ToRole="tblEquipamento" />
+          <NavigationProperty Name="tblObra" Relationship="Self.FK_tblRequer_tblObra" FromRole="tblRequer" ToRole="tblObra" />
+        </EntityType>
+        <EntityType Name="tblTrabalha">
+          <Key>
+            <PropertyRef Name="id_obra" />
+            <PropertyRef Name="id_func" />
+          </Key>
+          <Property Name="id_obra" Type="Int32" Nullable="false" />
+          <Property Name="id_func" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblFuncionario" Relationship="Self.FK_tblTrabalha_tblFuncionario" FromRole="tblTrabalha" ToRole="tblFuncionario" />
+          <NavigationProperty Name="tblObra" Relationship="Self.FK_tblTrabalha_tblObra" FromRole="tblTrabalha" ToRole="tblObra" />
+        </EntityType>
+        <Association Name="FK_tblAbastece_tblFornecedor">
+          <End Role="tblFornecedor" Type="Self.tblFornecedor" Multiplicity="1" />
+          <End Role="tblAbastece" Type="Self.tblAbastece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tblAbastece">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAbastece_tblMaterial">
+          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="1" />
+          <End Role="tblAbastece" Type="Self.tblAbastece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaterial">
+              <PropertyRef Name="id_material" />
+            </Principal>
+            <Dependent Role="tblAbastece">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblObra_tblCliente">
+          <End Role="tblCliente" Type="Self.tblCliente" Multiplicity="1" />
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="tblObra">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConsome_tblMaterial">
+          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="1" />
+          <End Role="tblConsome" Type="Self.tblConsome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaterial">
+              <PropertyRef Name="id_material" />
+            </Principal>
+            <Dependent Role="tblConsome">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConsome_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblConsome" Type="Self.tblConsome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblConsome">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFornece_tblEquipamento">
+          <End Role="tblEquipamento" Type="Self.tblEquipamento" Multiplicity="1" />
+          <End Role="tblFornece" Type="Self.tblFornece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipamento">
+              <PropertyRef Name="id_equip" />
+            </Principal>
+            <Dependent Role="tblFornece">
+              <PropertyRef Name="id_equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRequer_tblEquipamento">
+          <End Role="tblEquipamento" Type="Self.tblEquipamento" Multiplicity="1" />
+          <End Role="tblRequer" Type="Self.tblRequer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipamento">
+              <PropertyRef Name="id_equip" />
+            </Principal>
+            <Dependent Role="tblRequer">
+              <PropertyRef Name="id_equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFornece_tblFornecedor">
+          <End Role="tblFornecedor" Type="Self.tblFornecedor" Multiplicity="1" />
+          <End Role="tblFornece" Type="Self.tblFornece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tblFornece">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPagamento_tblFuncionario">
+          <End Role="tblFuncionario" Type="Self.tblFuncionario" Multiplicity="0..1" />
+          <End Role="tblPagamento" Type="Self.tblPagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionario">
+              <PropertyRef Name="id_func" />
+            </Principal>
+            <Dependent Role="tblPagamento">
+              <PropertyRef Name="id_func" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTrabalha_tblFuncionario">
+          <End Role="tblFuncionario" Type="Self.tblFuncionario" Multiplicity="1" />
+          <End Role="tblTrabalha" Type="Self.tblTrabalha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionario">
+              <PropertyRef Name="id_func" />
+            </Principal>
+            <Dependent Role="tblTrabalha">
+              <PropertyRef Name="id_func" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPagamento_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="0..1" />
+          <End Role="tblPagamento" Type="Self.tblPagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblPagamento">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRequer_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblRequer" Type="Self.tblRequer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblRequer">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTrabalha_tblObra">
+          <End Role="tblObra" Type="Self.tblObra" Multiplicity="1" />
+          <End Role="tblTrabalha" Type="Self.tblTrabalha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblObra">
+              <PropertyRef Name="id_obra" />
+            </Principal>
+            <Dependent Role="tblTrabalha">
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConstrucaoCivEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAbastece" EntityType="Self.tblAbastece" />
+          <EntitySet Name="tblCliente" EntityType="Self.tblCliente" />
+          <EntitySet Name="tblConsome" EntityType="Self.tblConsome" />
+          <EntitySet Name="tblEquipamento" EntityType="Self.tblEquipamento" />
+          <EntitySet Name="tblFornece" EntityType="Self.tblFornece" />
+          <EntitySet Name="tblFornecedor" EntityType="Self.tblFornecedor" />
+          <EntitySet Name="tblFuncionario" EntityType="Self.tblFuncionario" />
+          <EntitySet Name="tblMaterial" EntityType="Self.tblMaterial" />
+          <EntitySet Name="tblObra" EntityType="Self.tblObra" />
+          <EntitySet Name="tblPagamento" EntityType="Self.tblPagamento" />
+          <EntitySet Name="tblRequer" EntityType="Self.tblRequer" />
+          <EntitySet Name="tblTrabalha" EntityType="Self.tblTrabalha" />
+          <AssociationSet Name="FK_tblAbastece_tblFornecedor" Association="Self.FK_tblAbastece_tblFornecedor">
+            <End Role="tblFornecedor" EntitySet="tblFornecedor" />
+            <End Role="tblAbastece" EntitySet="tblAbastece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAbastece_tblMaterial" Association="Self.FK_tblAbastece_tblMaterial">
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+            <End Role="tblAbastece" EntitySet="tblAbastece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblObra_tblCliente" Association="Self.FK_tblObra_tblCliente">
+            <End Role="tblCliente" EntitySet="tblCliente" />
+            <End Role="tblObra" EntitySet="tblObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConsome_tblMaterial" Association="Self.FK_tblConsome_tblMaterial">
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+            <End Role="tblConsome" EntitySet="tblConsome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConsome_tblObra" Association="Self.FK_tblConsome_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblConsome" EntitySet="tblConsome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFornece_tblEquipamento" Association="Self.FK_tblFornece_tblEquipamento">
+            <End Role="tblEquipamento" EntitySet="tblEquipamento" />
+            <End Role="tblFornece" EntitySet="tblFornece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRequer_tblEquipamento" Association="Self.FK_tblRequer_tblEquipamento">
+            <End Role="tblEquipamento" EntitySet="tblEquipamento" />
+            <End Role="tblRequer" EntitySet="tblRequer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFornece_tblFornecedor" Association="Self.FK_tblFornece_tblFornecedor">
+            <End Role="tblFornecedor" EntitySet="tblFornecedor" />
+            <End Role="tblFornece" EntitySet="tblFornece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPagamento_tblFuncionario" Association="Self.FK_tblPagamento_tblFuncionario">
+            <End Role="tblFuncionario" EntitySet="tblFuncionario" />
+            <End Role="tblPagamento" EntitySet="tblPagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTrabalha_tblFuncionario" Association="Self.FK_tblTrabalha_tblFuncionario">
+            <End Role="tblFuncionario" EntitySet="tblFuncionario" />
+            <End Role="tblTrabalha" EntitySet="tblTrabalha" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPagamento_tblObra" Association="Self.FK_tblPagamento_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblPagamento" EntitySet="tblPagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRequer_tblObra" Association="Self.FK_tblRequer_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblRequer" EntitySet="tblRequer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTrabalha_tblObra" Association="Self.FK_tblTrabalha_tblObra">
+            <End Role="tblObra" EntitySet="tblObra" />
+            <End Role="tblTrabalha" EntitySet="tblTrabalha" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CivilConstructModelStoreContainer" CdmEntityContainer="ConstrucaoCivEntities">
+          <EntitySetMapping Name="tblAbastece">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblAbastece">
+              <MappingFragment StoreEntitySet="tblAbastece">
+                <ScalarProperty Name="id_material" ColumnName="id_material" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="custo" ColumnName="custo" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCliente">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblCliente">
+              <MappingFragment StoreEntitySet="tblCliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="localidade" ColumnName="localidade" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConsome">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblConsome">
+              <MappingFragment StoreEntitySet="tblConsome">
+                <ScalarProperty Name="id_material" ColumnName="id_material" />
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEquipamento">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblEquipamento">
+              <MappingFragment StoreEntitySet="tblEquipamento">
+                <ScalarProperty Name="id_equip" ColumnName="id_equip" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="aquisicao" ColumnName="aquisicao" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFornece">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblFornece">
+              <MappingFragment StoreEntitySet="tblFornece">
+                <ScalarProperty Name="id_fornece" ColumnName="id_fornece" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="id_equip" ColumnName="id_equip" />
+                <ScalarProperty Name="modo" ColumnName="modo" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="custo" ColumnName="custo" />
+                <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+                <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFornecedor">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblFornecedor">
+              <MappingFragment StoreEntitySet="tblFornecedor">
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="servico" ColumnName="servico" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="local" ColumnName="local" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="conta_bancaria" ColumnName="conta_bancaria" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFuncionario">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblFuncionario">
+              <MappingFragment StoreEntitySet="tblFuncionario">
+                <ScalarProperty Name="id_func" ColumnName="id_func" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="bi" ColumnName="bi" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="localidade" ColumnName="localidade" />
+                <ScalarProperty Name="data_nascenca" ColumnName="data_nascenca" />
+                <ScalarProperty Name="funcao" ColumnName="funcao" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="conta_bancaria" ColumnName="conta_bancaria" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ehAdmin" ColumnName="ehAdmin" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMaterial">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblMaterial">
+              <MappingFragment StoreEntitySet="tblMaterial">
+                <ScalarProperty Name="id_material" ColumnName="id_material" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblObra">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblObra">
+              <MappingFragment StoreEntitySet="tblObra">
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="local" ColumnName="local" />
+                <ScalarProperty Name="orçamento" ColumnName="orçamento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+                <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+                <ScalarProperty Name="custo_total" ColumnName="custo_total" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="decriçao" ColumnName="decriçao" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPagamento">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblPagamento">
+              <MappingFragment StoreEntitySet="tblPagamento">
+                <ScalarProperty Name="id_pagam" ColumnName="id_pagam" />
+                <ScalarProperty Name="quantia" ColumnName="quantia" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="id_func" ColumnName="id_func" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRequer">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblRequer">
+              <MappingFragment StoreEntitySet="tblRequer">
+                <ScalarProperty Name="id_equip" ColumnName="id_equip" />
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTrabalha">
+            <EntityTypeMapping TypeName="CivilConstructModel.tblTrabalha">
+              <MappingFragment StoreEntitySet="tblTrabalha">
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="id_func" ColumnName="id_func" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
